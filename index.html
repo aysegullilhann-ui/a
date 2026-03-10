@@ -23,7 +23,7 @@
             scroll-behavior: smooth;
         }
 
-        /* 🌸 Arka Planda Düşen Çiçekler */
+        /* 🌸 Çiçek Yağmuru */
         .flower {
             position: fixed;
             top: -50px;
@@ -35,34 +35,32 @@
             to { transform: translateY(110vh) rotate(360deg); }
         }
 
-        /* 🐱 GARANTİ GÖRÜNEN KEDİ ALANI */
-        .cat-box {
+        /* 🐱 GERÇEKÇİ VE PATİ ATAN KEDİ */
+        .cat-container {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 120px;
+            bottom: 0;
+            right: 15px;
+            width: 160px;
             z-index: 1000;
             cursor: pointer;
-            transition: 0.3s;
-        }
-        
-        /* Kedi SVG Çizimi */
-        .cat-svg {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 0 10px var(--pink));
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
-        .cat-box:hover .cat-svg {
-            transform: scale(1.1) rotate(-5deg);
+        .cat-container img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 15px var(--pink));
+        }
+
+        .cat-container:hover {
+            transform: scale(1.05) translateY(-5px);
         }
 
         /* Konuşma Balonu */
         .bubble {
             position: absolute;
-            top: -60px;
-            right: 10px;
+            top: -50px;
+            right: 20px;
             background: white;
             color: #333;
             padding: 10px 15px;
@@ -72,7 +70,7 @@
             display: none;
             white-space: nowrap;
             border: 2px solid var(--pink);
-            box-shadow: 0 5px 15px rgba(255,183,197,0.3);
+            box-shadow: 0 5px 20px rgba(255,183,197,0.4);
         }
 
         /* 🎀 Navigasyon */
@@ -89,12 +87,13 @@
             border-bottom: 2px solid var(--pink);
         }
         .logo { font-family: 'Dancing Script', cursive; color: var(--pink); font-size: 1.8rem; }
-        .nav-links a { color: var(--pink); margin-left: 20px; font-size: 1.4rem; transition: 0.3s; }
+        .nav-links a { color: var(--pink); margin-left: 20px; font-size: 1.5rem; transition: 0.3s; }
+        .nav-links a:hover { color: white; transform: scale(1.2); }
 
-        /* ✨ Bölümler */
         section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        
         .hero { text-align: center; }
-        .hero h1 { font-size: 3.5rem; color: var(--pink); margin-bottom: 10px; min-height: 85px; }
+        .hero h1 { font-size: 3.5rem; color: var(--pink); margin-bottom: 10px; min-height: 90px; }
         .hero p { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ccc; }
 
         .card {
@@ -104,112 +103,12 @@
             border: 1px solid var(--pink);
             margin-top: 20px;
             text-align: center;
+            backdrop-filter: blur(5px);
         }
 
         table { width: 100%; border-collapse: collapse; margin-top: 20px; text-align: left; }
         th { background: rgba(255, 183, 197, 0.2); color: var(--pink); padding: 15px; }
-        td { padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            section { padding: 80px 5%; }
-            .cat-box { width: 90px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="cat-box" onclick="kediKonustur()">
-        <div id="balon" class="bubble">Miyav! ✨</div>
-        <svg class="cat-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="115" r="70" fill="#f0f0f0"/> <circle cx="100" cy="80" r="50" fill="#ffffff"/> <path d="M60 40 L85 65 L40 70 Z" fill="#ffffff"/> <path d="M140 40 L115 65 L160 70 Z" fill="#ffffff"/> <circle cx="80" cy="80" r="6" fill="#333"/> <circle cx="120" cy="80" r="6" fill="#333"/> <path d="M95 95 Q100 105 105 95" stroke="#ffb7c5" stroke-width="3" fill="none"/> <path d="M150 140 Q180 140 170 100" stroke="#ffffff" stroke-width="8" fill="none" stroke-linecap="round"/> </svg>
-    </div>
-
-    <nav>
-        <div class="logo">Ayşe Gül Ilhan</div>
-        <div class="nav-links">
-            <a href="mailto:aysegulilhan@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.instagram.com/aysegulilh1/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/aysegullilhann-ui" target="_blank"><i class="fab fa-github"></i></a>
-        </div>
-    </nav>
-
-    <section id="anasayfa" class="hero">
-        <h1 id="typing"></h1>
-        <p>Geleceğin Yazılımcısı & Kedi Sever 🐾</p>
-    </section>
-
-    <section id="hakkimda">
-        <h2 style="color: var(--pink); border-bottom: 2px solid #444; padding-bottom: 10px;">📊 Eğitim & Yeteneklerim</h2>
-        <div class="card">
-            <table>
-                <thead>
-                    <tr><th>Konu</th><th>Seviye</th><th>Notlar</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Web Tasarımı</td><td>🌸 İleri</td><td>HTML5, CSS3, JS</td></tr>
-                    <tr><td>Veri Yapıları</td><td>🌱 Orta</td><td>Algoritma Mantığı</td></tr>
-                    <tr><td>Python</td><td>🐾 Temel</td><td>Otomasyon</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section id="iletisim">
-        <h2 style="color: var(--pink); border-bottom: 2px solid #444; padding-bottom: 10px; text-align: center;">📬 İletişime Geç</h2>
-        <div class="card">
-            <p><i class="fas fa-envelope" style="color: var(--pink);"></i> <strong>aysegulilhan@gmail.com</strong></p>
-            <p><i class="fab fa-instagram" style="color: var(--pink);"></i> Instagram: <strong>@aysegulilh1</strong></p>
-            <p><i class="fas fa-map-marker-alt" style="color: var(--pink);"></i> Batman, Türkiye</p>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 40px; color: var(--pink); opacity: 0.6;">
-        <p>🌸 Ayşe Gül tarafından özenle kodlanmıştır. 🐱</p>
-    </footer>
-
-    <script>
-        const text = "Ayşe Gül Ilhan";
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                document.getElementById("typing").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, 150);
-            }
-        }
-        window.onload = type;
-
-        const mesajlar = [
-            "Beni görebildiğine sevindim! 🐾",
-            "Batman'ın en teknolojik kedisi iş başında! 💻",
-            "Ayşe Gül bugün harika kodlar yazıyor 🌸",
-            "Miyav! Tıkladığın için teşekkürler! ✨",
-            "Kuyruğumda şık bir pembe ışık var, fark ettin mi?"
-        ];
-
-        function kediKonustur() {
-            const balon = document.getElementById("balon");
-            const rastgele = mesajlar[Math.floor(Math.random() * mesajlar.length)];
-            balon.innerHTML = rastgele;
-            balon.style.display = "block";
-            setTimeout(() => { balon.style.display = "none"; }, 3000);
-        }
-
-        function createFlower() {
-            const flower = document.createElement('div');
-            flower.classList.add('flower');
-            flower.innerHTML = "🌸";
-            flower.style.left = Math.random() * 100 + "vw";
-            flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            document.body.appendChild(flower);
-            setTimeout(() => { flower.remove(); }, 5000);
-        }
-        setInterval(createFlower, 800);
-    </script>
-</body>
-</html>
-
+        td { padding: 15px; border-bottom: 1px solid rgba(255, 255,
 
 
 
