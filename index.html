@@ -35,37 +35,47 @@
             to { transform: translateY(110vh) rotate(360deg); }
         }
 
-        /* 🐱 Şirin ve Hareketli Kedi Alanı */
+        /* 🐱 GERÇEKÇİ KEDİ ALANI */
         .cat-box {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 130px;
+            bottom: -10px; /* Biraz aşağıda dursun, tam otursun */
+            right: 10px;
+            width: 180px; /* Gerçekçi kedi biraz daha büyük ve net dursun */
             z-index: 1000;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, bottom 0.3s ease;
         }
+        
+        /* Gerçekçi kedi görseli ayarları */
         .cat-box img {
             width: 100%;
+            height: auto;
+            /* Pembe bir aura verelim, teknolojik dursun */
             filter: drop-shadow(0 0 15px var(--pink));
         }
-        .cat-box:hover { transform: scale(1.1) translateY(-10px); }
+        
+        /* Üzerine gelince kedi biraz yukarı zıplar */
+        .cat-box:hover { 
+            transform: scale(1.05);
+            bottom: 5px;
+        }
 
-        /* Konuşma Balonu */
+        /* Konuşma Balonu (Geliştirilmiş) */
         .bubble {
             position: absolute;
-            top: -50px;
-            right: 10px;
-            background: white;
+            top: -60px; /* Kedinin kafasının üzerine denk gelsin */
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
             color: #333;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 13px;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 14px;
             font-weight: 600;
             display: none;
             white-space: nowrap;
             border: 2px solid var(--pink);
-            box-shadow: 0 5px 15px rgba(255,183,197,0.3);
+            box-shadow: 0 5px 20px rgba(255,183,197,0.4);
+            z-index: 1001;
         }
 
         /* 🎀 Navigasyon */
@@ -83,14 +93,14 @@
         }
         .logo { font-family: 'Dancing Script', cursive; color: var(--pink); font-size: 1.8rem; }
         .nav-links a { color: var(--pink); margin-left: 20px; font-size: 1.4rem; transition: 0.3s; }
-        .nav-links a:hover { color: white; }
+        .nav-links a:hover { color: white; transform: scale(1.1); }
 
         /* ✨ Bölümler */
-        section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
         
         .hero { text-align: center; }
-        .hero h1 { font-size: 3.5rem; color: var(--pink); margin-bottom: 10px; min-height: 80px; }
-        .hero p { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ccc; }
+        .hero h1 { font-size: 3.8rem; color: var(--pink); margin-bottom: 10px; min-height: 90px; }
+        .hero p { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #ccc; }
 
         /* 📊 Kart Tasarımı */
         .card {
@@ -100,6 +110,7 @@
             border: 1px solid var(--pink);
             margin-top: 20px;
             text-align: center;
+            backdrop-filter: blur(5px);
         }
 
         table { width: 100%; border-collapse: collapse; margin-top: 20px; text-align: left; }
@@ -107,9 +118,9 @@
         td { padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2.5rem; }
             section { padding: 80px 5%; }
-            .cat-box { width: 100px; }
+            .cat-box { width: 130px; bottom: -5px; }
         }
     </style>
 </head>
@@ -117,15 +128,15 @@
 
     <div class="cat-box" onclick="kediKonustur()">
         <div id="balon" class="bubble">Miyav! ✨</div>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIybTVidXo5bmh6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v6aOebdEGzeWJrLB1C/giphy.gif" alt="Şirin Kedi">
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/cat-looking-up-8709594-7123985.png" alt="Gerçekçi Şirin Kedi">
     </div>
 
     <nav>
         <div class="logo">Ayşe Gül Ilhan</div>
         <div class="nav-links">
-            <a href="mailto:aysegulilhan@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.instagram.com/aysegulilh1/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/aysegullilhann-ui" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:aysegulilhan@gmail.com" title="Mail At"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/aysegulilh1/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/aysegullilhann-ui" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
     </nav>
 
@@ -135,7 +146,7 @@
     </section>
 
     <section id="hakkimda">
-        <h2 style="color: var(--pink); border-bottom: 1px solid #444; padding-bottom: 10px;">📊 Eğitim & Yeteneklerim</h2>
+        <h2 style="color: var(--pink); border-bottom: 2px solid #333; padding-bottom: 10px; width: fit-content;">📊 Eğitim & Yeteneklerim</h2>
         <div class="card">
             <table>
                 <thead>
@@ -155,7 +166,7 @@
     </section>
 
     <section id="iletisim">
-        <h2 style="color: var(--pink); border-bottom: 1px solid #444; padding-bottom: 10px; text-align: center;">📬 İletişime Geç</h2>
+        <h2 style="color: var(--pink); border-bottom: 2px solid #333; padding-bottom: 10px; width: fit-content; margin: 0 auto;">📬 İletişime Geç</h2>
         <div class="card">
             <p>Merhaba! Benimle iletişime geçmek için aşağıdaki yolları kullanabilirsin:</p>
             <br>
@@ -190,15 +201,24 @@
             "Kod yazarken arada bir mola verip beni sev! 🐱",
             "Bu site çiçek gibi kokuyor, değil mi? 🌸",
             "Miyav! Yazılımcı olmak çok havalı! ✨",
-            "Acaba bugün hangi saç rengini denesek? 🎨"
+            "Acaba bugün hangi saç rengini denesek? 🎨",
+            "Miyav! Tıkladığın için teşekkürler tüysüz dostum! ✨"
         ];
 
         function kediKonustur() {
             const balon = document.getElementById("balon");
             const rastgele = mesajlar[Math.floor(Math.random() * mesajlar.length)];
+            
+            // Eski mesajı temizle ve yenisini yaz
             balon.innerHTML = rastgele;
+            
+            // Balonu göster
             balon.style.display = "block";
-            setTimeout(() => { balon.style.display = "none"; }, 3000);
+            
+            // 3 saniye sonra balonu gizle
+            setTimeout(() => { 
+                balon.style.display = "none"; 
+            }, 3000);
         }
 
         // 3. Çiçek Yağmuru
@@ -212,9 +232,10 @@
             document.body.appendChild(flower);
             setTimeout(() => { flower.remove(); }, 5000);
         }
-        setInterval(createFlower, 700);
+        setInterval(createFlower, 800);
     </script>
 </body>
 </html>
+
 
 
