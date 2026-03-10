@@ -2,113 +2,86 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayşe Gül | Flower & Tech</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
     <style>
-        :root {
-            --pink: #ffb7c5;
-            --dark: #0b0c10;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        
         body { 
-            background: var(--dark); 
-            color: white; 
-            overflow-x: hidden; 
-            scroll-behavior: smooth;
-        }
-
-        /* 🌸 Çiçek Yağmuru */
-        .flower {
-            position: fixed;
-            top: -50px;
-            font-size: 20px;
-            z-index: -1;
-            animation: fall linear forwards;
-        }
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
-        }
-
-        /* 🐱 GERÇEKÇİ VE PATİ ATAN KEDİ */
-        .cat-container {
-            position: fixed;
-            bottom: 0;
-            right: 15px;
-            width: 160px;
-            z-index: 1000;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-
-        .cat-container img {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 0 15px var(--pink));
-        }
-
-        .cat-container:hover {
-            transform: scale(1.05) translateY(-5px);
-        }
-
-        /* Konuşma Balonu */
-        .bubble {
-            position: absolute;
-            top: -50px;
-            right: 20px;
-            background: white;
-            color: #333;
-            padding: 10px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            display: none;
-            white-space: nowrap;
-            border: 2px solid var(--pink);
-            box-shadow: 0 5px 20px rgba(255,183,197,0.4);
-        }
-
-        /* 🎀 Navigasyon */
-        nav {
-            padding: 15px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            z-index: 1001;
-            border-bottom: 2px solid var(--pink);
-        }
-        .logo { font-family: 'Dancing Script', cursive; color: var(--pink); font-size: 1.8rem; }
-        .nav-links a { color: var(--pink); margin-left: 20px; font-size: 1.5rem; transition: 0.3s; }
-        .nav-links a:hover { color: white; transform: scale(1.2); }
-
-        section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-        
-        .hero { text-align: center; }
-        .hero h1 { font-size: 3.5rem; color: var(--pink); margin-bottom: 10px; min-height: 90px; }
-        .hero p { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ccc; }
-
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid var(--pink);
-            margin-top: 20px;
+            background-color: #0f0f1a; 
+            color: #ffb7c5; 
+            font-family: sans-serif; 
+            margin: 0; 
             text-align: center;
-            backdrop-filter: blur(5px);
+            overflow-x: hidden;
+        }
+        /* 🌸 Çiçekler */
+        .flower { position: fixed; top: -50px; animation: fall 5s linear forwards; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+        /* 🐱 Kedi */
+        .cat-container { position: fixed; bottom: 10px; right: 10px; width: 150px; cursor: pointer; z-index: 999; }
+        .cat-container img { width: 100%; filter: drop-shadow(0 0 10px #ffb7c5); }
+
+        /* 💬 Balon */
+        .bubble { 
+            position: absolute; top: -50px; right: 10px; background: white; color: black; 
+            padding: 10px; border-radius: 15px; display: none; border: 2px solid #ffb7c5;
         }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; text-align: left; }
-        th { background: rgba(255, 183, 197, 0.2); color: var(--pink); padding: 15px; }
-        td { padding: 15px; border-bottom: 1px solid rgba(255, 255,
+        nav { padding: 20px; border-bottom: 2px solid #ffb7c5; background: #000; }
+        .card { background: #1a1a2e; margin: 20px; padding: 20px; border-radius: 15px; border: 1px solid #ffb7c5; }
+        a { color: #ffb7c5; text-decoration: none; margin: 0 10px; font-size: 20px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>Ayşe Gül Ilhan</h2>
+        <a href="mailto:aysegulilhan@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.instagram.com/aysegulilh1/"><i class="fab fa-instagram"></i></a>
+    </nav>
+
+    <div class="cat-container" onclick="kediKonustur()">
+        <div id="balon" class="bubble">Miyav! ✨</div>
+        <img src="https://media.giphy.com/media/ByX7I5N4tGkXclE62F/giphy.gif" alt="Kedi">
+    </div>
+
+    <h1>Hoş Geldiniz! 🌸</h1>
+    <p>Geleceğin Yazılımcısı & Batman'ın Kedi Severi</p>
+
+    <div class="card">
+        <h3>📊 Yeteneklerim</h3>
+        <p>Web Tasarım | Python | Çiçekler & Kediler</p>
+    </div>
+
+    <div class="card">
+        <h3>📬 İletişim</h3>
+        <p>Instagram: @aysegulilh1</p>
+        <p>Email: aysegulilhan@gmail.com</p>
+    </div>
+
+    <script>
+        // Kedi Konuşturma
+        function kediKonustur() {
+            const mesajlar = ["Miyav! 🐾", "Ayşe Gül çok iyi kod yazıyor!", "Batman'dan selamlar! 🌸", "Bana tıkla! ✨"];
+            const balon = document.getElementById("balon");
+            balon.innerText = mesajlar[Math.floor(Math.random() * mesajlar.length)];
+            balon.style.display = "block";
+            setTimeout(() => { balon.style.display = "none"; }, 3000);
+        }
+
+        // Çiçek Yağmuru
+        setInterval(() => {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.innerHTML = "🌸";
+            flower.style.left = Math.random() * 100 + "vw";
+            document.body.appendChild(flower);
+            setTimeout(() => flower.remove(), 5000);
+        }, 1000);
+    </script>
+</body>
+</html>
+
 
 
 
