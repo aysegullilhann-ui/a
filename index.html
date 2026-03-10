@@ -11,7 +11,6 @@
     <style>
         :root {
             --pink: #ffb7c5;
-            --mint: #66fcf1;
             --dark: #0b0c10;
         }
 
@@ -36,55 +35,62 @@
             to { transform: translateY(110vh) rotate(360deg); }
         }
 
-        /* 🐱 Gelişmiş Kedi Kutusu */
+        /* 🐱 Şirin ve Hareketli Kedi Alanı */
         .cat-box {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            font-size: 50px;
-            z-index: 100;
+            width: 130px;
+            z-index: 1000;
             cursor: pointer;
-            transition: 0.3s;
-            filter: drop-shadow(0 0 10px var(--pink));
+            transition: transform 0.3s ease;
         }
-        .cat-box:hover { transform: scale(1.2) rotate(-10deg); }
-        
+        .cat-box img {
+            width: 100%;
+            filter: drop-shadow(0 0 15px var(--pink));
+        }
+        .cat-box:hover { transform: scale(1.1) translateY(-10px); }
+
         /* Konuşma Balonu */
         .bubble {
             position: absolute;
-            bottom: 60px;
-            right: 0;
+            top: -50px;
+            right: 10px;
             background: white;
-            color: black;
-            padding: 10px;
-            border-radius: 15px;
-            font-size: 14px;
-            width: 150px;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
             display: none;
+            white-space: nowrap;
             border: 2px solid var(--pink);
+            box-shadow: 0 5px 15px rgba(255,183,197,0.3);
         }
 
         /* 🎀 Navigasyon */
         nav {
-            padding: 20px 10%;
+            padding: 15px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
-            z-index: 1000;
+            z-index: 1001;
             border-bottom: 2px solid var(--pink);
         }
         .logo { font-family: 'Dancing Script', cursive; color: var(--pink); font-size: 1.8rem; }
+        .nav-links a { color: var(--pink); margin-left: 20px; font-size: 1.4rem; transition: 0.3s; }
+        .nav-links a:hover { color: white; }
 
         /* ✨ Bölümler */
-        section { padding: 100px 10%; min-height: 80vh; }
+        section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
         
-        .hero { text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100vh; }
-        .hero h1 { font-size: 3.5rem; color: var(--pink); margin-bottom: 10px; }
-        .hero p { font-family: 'Dancing Script', cursive; font-size: 1.6rem; color: #ccc; }
+        .hero { text-align: center; }
+        .hero h1 { font-size: 3.5rem; color: var(--pink); margin-bottom: 10px; min-height: 80px; }
+        .hero p { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ccc; }
 
         /* 📊 Kart Tasarımı */
         .card {
@@ -92,41 +98,34 @@
             padding: 30px;
             border-radius: 20px;
             border: 1px solid var(--pink);
-            margin-top: 30px;
+            margin-top: 20px;
+            text-align: center;
         }
 
-        /* 📬 İletişim Bölümü */
-        .contact-links a {
-            color: var(--pink);
-            text-decoration: none;
-            font-size: 1.5rem;
-            margin: 0 15px;
-            transition: 0.3s;
-        }
-        .contact-links a:hover { color: white; transform: translateY(-5px); }
-
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { background: rgba(255, 183, 197, 0.2); color: var(--pink); padding: 15px; text-align: left; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; text-align: left; }
+        th { background: rgba(255, 183, 197, 0.2); color: var(--pink); padding: 15px; }
         td { padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             section { padding: 80px 5%; }
+            .cat-box { width: 100px; }
         }
     </style>
 </head>
 <body>
 
     <div class="cat-box" onclick="kediKonustur()">
-        <div id="balon" class="bubble">Miyav! Tıkla bana!</div>
-        😻
+        <div id="balon" class="bubble">Miyav! ✨</div>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIybTVidXo5bmh6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v6aOebdEGzeWJrLB1C/giphy.gif" alt="Şirin Kedi">
     </div>
 
     <nav>
         <div class="logo">Ayşe Gül Ilhan</div>
-        <div class="contact-links">
-            <a href="mailto:eposta@adresin.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/aysegullilhann-ui"><i class="fab fa-github"></i></a>
+        <div class="nav-links">
+            <a href="mailto:aysegulilhan@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/aysegulilh1/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/aysegullilhann-ui" target="_blank"><i class="fab fa-github"></i></a>
         </div>
     </nav>
 
@@ -136,41 +135,42 @@
     </section>
 
     <section id="hakkimda">
-        <h2 style="color: var(--pink); border-bottom: 1px solid #333; padding-bottom: 10px;">📊 Eğitim & Yeteneklerim</h2>
+        <h2 style="color: var(--pink); border-bottom: 1px solid #444; padding-bottom: 10px;">📊 Eğitim & Yeteneklerim</h2>
         <div class="card">
             <table>
                 <thead>
                     <tr>
-                        <th>Konu</th>
+                        <th>Ders</th>
                         <th>Seviye</th>
-                        <th>Detay</th>
+                        <th>Notlar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr><td>Web Tasarımı</td><td>🌸 İleri</td><td>HTML5, CSS3, JS</td></tr>
                     <tr><td>Veri Yapıları</td><td>🌱 Orta</td><td>Algoritma Mantığı</td></tr>
-                    <tr><td>Python</td><td>🐾 Temel</td><td>Otomasyon</td></tr>
+                    <tr><td>Python</td><td>🐾 Temel</td><td>Otomasyon Projeleri</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <section id="iletisim" style="text-align: center;">
-        <h2 style="color: var(--pink);">📬 İletişime Geç</h2>
+    <section id="iletisim">
+        <h2 style="color: var(--pink); border-bottom: 1px solid #444; padding-bottom: 10px; text-align: center;">📬 İletişime Geç</h2>
         <div class="card">
-            <p>Projelerim hakkında konuşmak veya bir kahve içmek için yazabilirsiniz!</p>
+            <p>Merhaba! Benimle iletişime geçmek için aşağıdaki yolları kullanabilirsin:</p>
             <br>
-            <p>📧 <strong>eposta@adresin.com</strong></p>
-            <p>📍 Batman, Türkiye</p>
+            <p><i class="fas fa-envelope" style="color: var(--pink);"></i> <strong>aysegulilhan@gmail.com</strong></p>
+            <p><i class="fab fa-instagram" style="color: var(--pink);"></i> Instagram: <strong>@aysegulilh1</strong></p>
+            <p><i class="fas fa-map-marker-alt" style="color: var(--pink);"></i> Batman, Türkiye</p>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 50px; color: var(--pink); opacity: 0.7;">
-        <p>🌸 Ayşe Gül tarafından özenle kodlanmıştır. 🐱</p>
+    <footer style="text-align: center; padding: 40px; color: var(--pink); opacity: 0.6; font-size: 0.9rem;">
+        <p>🌸 Bu site Ayşe Gül tarafından özenle kodlanmıştır. 🐱</p>
     </footer>
 
     <script>
-        // 1. Yazı Efekti
+        // 1. Yazı Yazma Efekti
         const text = "Ayşe Gül Ilhan";
         let i = 0;
         function type() {
@@ -184,12 +184,13 @@
 
         // 2. Akıllı Kedi Mesajları
         const mesajlar = [
-            "Kod yazarken beni beslemeyi unutma! 🐟",
-            "Bu siteyi Ayşe Gül kodladı, ben sadece denetliyorum. 🐾",
-            "Yazılımcı olunca bana akıllı mama kabı yapacak mısın? 🤖",
-            "Uykum var ama siteyi bekliyorum. 😴",
-            "Çiçekleri ben mi döktüm? Hiç sanmam! 🌸",
-            "Miyav! Bugün harika görünüyorsun! ✨"
+            "Ayşe Gül bugün harika kod yazıyor! 💻🌸",
+            "Batman'ın en teknolojik kedisi benim! 🐾",
+            "Instagram'dan bizi takip etmeyi unutma! 📸",
+            "Kod yazarken arada bir mola verip beni sev! 🐱",
+            "Bu site çiçek gibi kokuyor, değil mi? 🌸",
+            "Miyav! Yazılımcı olmak çok havalı! ✨",
+            "Acaba bugün hangi saç rengini denesek? 🎨"
         ];
 
         function kediKonustur() {
@@ -211,8 +212,9 @@
             document.body.appendChild(flower);
             setTimeout(() => { flower.remove(); }, 5000);
         }
-        setInterval(createFlower, 800);
+        setInterval(createFlower, 700);
     </script>
 </body>
 </html>
+
 
