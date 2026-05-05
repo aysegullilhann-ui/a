@@ -10,40 +10,48 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background: #fff5f7; color: var(--text); overflow-x: hidden; min-height: 100vh; }
 
-        /* 🌸 Çiçek Yağmuru */
-        .flower { position: fixed; top: -50px; font-size: 24px; z-index: 1; animation: fall linear forwards; pointer-events: none; }
+        /* 🌸 Çiçek Yağmuru - Mobilde kasmaması için optimize edildi */
+        .flower { position: fixed; top: -50px; font-size: 20px; z-index: 1; animation: fall linear forwards; pointer-events: none; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        /* 🐱 Kedi */
-        .cat-box { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 1000; text-align: center; }
-        .cat-visual { font-size: 70px; animation: bounce 2s infinite; display: block; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .bubble { position: absolute; bottom: 100px; right: 0; background: white; padding: 12px 20px; border-radius: 20px; border: 2px solid var(--pink); display: none; white-space: nowrap; box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-weight: bold; color: var(--dark-pink); }
+        /* 🐱 Kedi - Mobil için boyutlandırıldı */
+        .cat-box { position: fixed; bottom: 15px; right: 15px; cursor: pointer; z-index: 1000; text-align: center; }
+        .cat-visual { font-size: 60px; animation: bounce 2s infinite; display: block; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .bubble { position: absolute; bottom: 85px; right: 0; background: white; padding: 10px 15px; border-radius: 15px; border: 2px solid var(--pink); display: none; white-space: nowrap; font-size: 14px; font-weight: bold; color: var(--dark-pink); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
 
-        /* 🎀 Navigasyon */
-        nav { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: white; box-shadow: 0 2px 15px rgba(255, 183, 197, 0.2); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--dark-pink); }
-        .nav-links a { margin-left: 20px; text-decoration: none; color: var(--dark-pink); font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .nav-links a:hover { color: var(--pink); }
+        /* 🎀 Mobil Uyumlu Navigasyon */
+        nav { padding: 15px 5%; display: flex; flex-direction: column; align-items: center; background: white; box-shadow: 0 2px 15px rgba(255, 183, 197, 0.2); position: sticky; top: 0; z-index: 100; gap: 10px; }
+        .logo { font-size: 1.3rem; font-weight: bold; color: var(--dark-pink); }
+        .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .nav-links a { text-decoration: none; color: var(--dark-pink); font-weight: bold; font-size: 0.9rem; cursor: pointer; padding: 5px 8px; border-radius: 5px; transition: 0.3s; }
+        .nav-links a:hover { background: var(--soft-pink); }
 
-        /* 📄 Sayfalar */
-        .page { display: none; max-width: 800px; margin: 40px auto; padding: 30px; background: rgba(255, 255, 255, 0.95); border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; border: 2px solid var(--soft-pink); animation: fadeIn 0.5s ease; }
+        /* 📄 Sayfalar - Mobil Esneklik */
+        .page { display: none; max-width: 90%; width: 500px; margin: 20px auto; padding: 25px; background: rgba(255, 255, 255, 0.95); border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; border: 2px solid var(--soft-pink); animation: fadeIn 0.4s ease; }
         .active-page { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        h1 { color: var(--dark-pink); margin-bottom: 20px; }
+        h1 { color: var(--dark-pink); font-size: 1.8rem; margin-bottom: 15px; }
 
-        /* 🎮 Oyun Alanı */
-        #game-area { width: 100%; height: 350px; background: #fff; border: 2px dashed var(--pink); border-radius: 20px; position: relative; overflow: hidden; cursor: crosshair; }
-        .target { position: absolute; font-size: 45px; cursor: pointer; user-select: none; z-index: 10; transition: transform 0.1s; }
+        /* 🎮 Mobil Uyumlu Oyun Alanı */
+        #game-area { width: 100%; height: 300px; background: #fff; border: 2px dashed var(--pink); border-radius: 20px; position: relative; overflow: hidden; cursor: crosshair; touch-action: manipulation; }
+        .target { position: absolute; font-size: 40px; cursor: pointer; user-select: none; z-index: 10; }
         
         /* 🏆 Skor Tablosu */
-        .score-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-        .score-table th, .score-table td { padding: 10px; border-bottom: 1px solid var(--soft-pink); }
+        .score-table { width: 100%; margin-top: 15px; font-size: 0.9rem; border-collapse: collapse; }
+        .score-table th, .score-table td { padding: 8px; border-bottom: 1px solid var(--soft-pink); }
 
-        .btn { background: var(--dark-pink); color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin-top: 15px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: var(--pink); }
-        input, textarea, select { padding: 10px; border-radius: 10px; border: 1px solid var(--pink); margin: 10px 0; outline: none; width: 100%; }
+        /* Form Elemanları */
+        .btn { background: var(--dark-pink); color: white; border: none; padding: 12px 20px; border-radius: 12px; cursor: pointer; margin-top: 10px; font-weight: bold; width: 100%; transition: 0.3s; }
+        input, textarea, select { padding: 12px; border-radius: 12px; border: 1px solid var(--pink); margin: 8px 0; outline: none; width: 100%; font-size: 16px; /* Mobilde zoom yapmaması için 16px */ }
+
+        @media (min-width: 768px) {
+            nav { flex-direction: row; justify-content: space-between; }
+            .page { width: 700px; margin: 40px auto; }
+            h1 { font-size: 2.5rem; }
+            .btn { width: auto; padding: 10px 25px; }
+        }
     </style>
 </head>
 <body>
@@ -51,11 +59,11 @@
     <nav>
         <div class="logo">Ayşe Gül Ilhan</div>
         <div class="nav-links">
-            <a onclick="showPage('ana-sayfa')">Ana Sayfa</a>
+            <a onclick="showPage('ana-sayfa')">Giriş</a>
             <a onclick="showPage('hakkimda')">Hakkımda</a>
             <a onclick="showPage('oyun')">Pati Avı</a>
-            <a onclick="showPage('anket')">Anket</a>
             <a onclick="showPage('skorlar')">Liderler</a>
+            <a onclick="showPage('anket')">Anket</a>
         </div>
     </nav>
 
@@ -63,35 +71,34 @@
     <div id="ana-sayfa" class="page active-page">
         <h1 id="typing"></h1>
         <p>Batman'dan Yazılım Dünyasına Pati İzleri 🐾</p>
-        <p style="margin-top:15px;">Teknoloji, oyun ve kedilerin buluştuğu dijital bahçeme hoş geldin!</p>
+        <p style="margin-top:10px; font-size: 0.9rem;">Teknoloji ve kedilerin buluştuğu dijital bahçeme hoş geldin!</p>
     </div>
 
     <!-- 👤 Hakkımda -->
     <div id="hakkimda" class="page">
         <h1>Ben Kimim? 🌸</h1>
-        <p>Batman'da yaşayan bir yazılımcı adayıyım. Kodların karmaşasını çiçeklerin ve kedilerin huzuruyla dengelemeyi seviyorum.</p>
-        <div style="margin-top: 20px; text-align: left; background: var(--soft-pink); padding: 20px; border-radius: 20px;">
-            <p><strong>💻 Odak Alanım:</strong> Modern web arayüzleri ve Python projeleri.</p>
-            <p><strong>🐾 Kediler:</strong> Onlar benim en sadık "hata ayıklayıcı" (debugger) dostlarım!</p>
-            <p><strong>📍 Konum:</strong> Batman, Türkiye</p>
+        <p style="font-size: 0.95rem;">Batman'da yaşayan bir yazılımcı adayıyım. Kod yazmayı ve kedilerin huzurunu seviyorum.</p>
+        <div style="margin-top: 15px; text-align: left; background: var(--soft-pink); padding: 15px; border-radius: 15px; font-size: 0.9rem;">
+            <p><strong>💻 Odak:</strong> Web Tasarımı ve Python</p>
+            <p><strong>🐾 Kedi:</strong> En sadık debugger dostum!</p>
+            <p><strong>📍 Yer:</strong> Batman, Türkiye</p>
         </div>
     </div>
 
-    <!-- 🎮 Zorlu Oyun Sayfası -->
+    <!-- 🎮 Oyun -->
     <div id="oyun" class="page">
-        <h1>Pati Avı: Dikkatli Ol! 🐾</h1>
+        <h1>Pati Avı 🐾</h1>
         <div id="setup-area">
-            <p>Skorunu kaydetmek için ismini yaz:</p>
-            <input type="text" id="player-name" placeholder="Adın nedir?">
+            <input type="text" id="player-name" placeholder="Adını yaz ve başla...">
             <button class="btn" onclick="checkNameAndStart()">Oyunu Başlat</button>
         </div>
         <div id="play-area" style="display: none;">
-            <p>Boş beyaz alana basarsan oyun biter! Skor: <b id="score">0</b></p>
+            <p>Boşluğa basma! Skor: <b id="score">0</b></p>
             <div id="game-area" onclick="gameOver()"></div>
         </div>
     </div>
 
-    <!-- 🏆 Skor Tablosu -->
+    <!-- 🏆 Skor Tablosu (Sıfırlama Butonu Kaldırıldı) -->
     <div id="skorlar" class="page">
         <h1>🏆 En İyi 5 Avcı</h1>
         <table class="score-table">
@@ -100,31 +107,35 @@
             </thead>
             <tbody id="leaderboard-body"></tbody>
         </table>
-        <button class="btn" onclick="clearScores()">Tabloyu Temizle</button>
+        <p style="margin-top: 15px; font-size: 0.8rem; color: #aaa;">Skorlar bu tarayıcıya özel kaydedilir.</p>
     </div>
 
-    <!-- ✉️ Anket (Artık Mailine Bağlı!) -->
+    <!-- ✉️ İsimli Anket -->
     <div id="anket" class="page">
         <h1>Geri Bildirim 📬</h1>
-        <p>Yazdıkların doğrudan mail kutuma ulaşacak.</p>
-        <div style="text-align: left; background: var(--soft-pink); padding: 20px; border-radius: 20px; margin-top: 20px;">
+        <div style="text-align: left; background: var(--soft-pink); padding: 20px; border-radius: 20px;">
             <form action="https://formspree.io/f/xgodyvwo" method="POST">
-                <label>Siteyi nasıl buldunuz?</label>
+                <label>İsminiz:</label>
+                <input type="text" name="name" required placeholder="Mesajda isminizi görebilmem için...">
+                
+                <label>Sizce site nasıl?</label>
                 <select name="rating">
-                    <option value="Muhteşem">Muhteşem! 🌸</option>
-                    <option value="Çok Eğlenceli">Çok Eğlenceli 🐾</option>
-                    <option value="Daha Fazla Kedi!">Daha Fazla Kedi Lazım! 😼</option>
+                    <option>Muhteşem! 🌸</option>
+                    <option>Eğlenceli 🐾</option>
+                    <option>Geliştirilmeli 😼</option>
                 </select>
+                
                 <label>Mesajınız:</label>
-                <textarea name="message" rows="4" placeholder="Fikirlerini benimle paylaş..."></textarea>
-                <button type="submit" class="btn">Mesajı Gönder</button>
+                <textarea name="message" rows="3" required placeholder="Fikirlerini yaz..."></textarea>
+                
+                <button type="submit" class="btn">Mail Gönder</button>
             </form>
         </div>
     </div>
 
     <!-- 🐱 Kedi -->
     <div class="cat-box" onclick="kediKonustur()">
-        <div id="balon" class="bubble">Miyav! Hoş geldin!</div>
+        <div id="balon" class="bubble">Miyav!</div>
         <span class="cat-visual">🐈</span>
     </div>
 
@@ -133,26 +144,21 @@
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
             document.getElementById(id).classList.add('active-page');
             if (id === 'skorlar') updateLeaderboard();
+            window.scrollTo(0,0);
         }
 
         const text = "Ayşe Gül Ilhan"; let idx = 0;
         function type() { if(idx < text.length) { document.getElementById("typing").innerHTML += text.charAt(idx); idx++; setTimeout(type, 150); } }
         window.onload = type;
 
-        const kediSozleri = [
-            "Miyav! Batman fıstığı kadar tatlı bir gün olsun! 🌸",
-            "Anketten gelen mesajları okumak için sabırsızlanıyoruz! 📬",
-            "Pati Avı'nda boşluğa basma, kuyruğumu titretme! 😼",
-            "Ayşe Gül'ün sitesi Batman'ın en havalı sitesi! 🐾"
-        ];
         function kediKonustur() {
             const b = document.getElementById("balon");
-            b.innerText = kediSozleri[Math.floor(Math.random() * kediSozleri.length)];
+            const sozler = ["Miyav! Batman'dan sevgiler!", "Ankette ismini yazmayı unutma!", "Boşluğa basarsan oyun biter!"];
+            b.innerText = sozler[Math.floor(Math.random()*sozler.length)];
             b.style.display = "block";
-            setTimeout(() => b.style.display = "none", 3500);
+            setTimeout(() => b.style.display = "none", 3000);
         }
 
-        // 🎮 OYUN
         let score = 0; let currentPlayer = ""; let gameActive = false;
         function checkNameAndStart() {
             currentPlayer = document.getElementById("player-name").value.trim();
@@ -161,22 +167,13 @@
             document.getElementById("play-area").style.display = "block";
             startGame();
         }
-        function startGame() {
-            score = 0; gameActive = true;
-            document.getElementById("score").innerText = score;
-            spawnTarget();
-        }
+        function startGame() { score = 0; gameActive = true; document.getElementById("score").innerText = score; spawnTarget(); }
         function spawnTarget() {
             if (!gameActive) return;
             const area = document.getElementById("game-area"); area.innerHTML = "";
             const target = document.createElement("div"); target.className = "target"; target.innerHTML = "🐾";
-            target.style.left = Math.random() * 85 + "%";
-            target.style.top = Math.random() * 85 + "%";
-            target.onclick = (e) => {
-                e.stopPropagation(); score++;
-                document.getElementById("score").innerText = score;
-                target.remove(); spawnTarget();
-            };
+            target.style.left = Math.random() * 80 + "%"; target.style.top = Math.random() * 80 + "%";
+            target.onclick = (e) => { e.stopPropagation(); score++; document.getElementById("score").innerText = score; target.remove(); spawnTarget(); };
             area.appendChild(target);
         }
         function gameOver() {
@@ -188,7 +185,6 @@
             showPage('skorlar');
         }
 
-        // 🏆 SKORLAR
         function saveScore(n, s) {
             let scs = JSON.parse(localStorage.getItem('catScores') || '[]');
             scs.push({ name: n, score: s });
@@ -201,16 +197,13 @@
                 `<tr><td>${i+1}</td><td>${s.name}</td><td>${s.score}</td></tr>`
             ).join('') || "<tr><td colspan='3'>Henüz skor yok!</td></tr>";
         }
-        function clearScores() { localStorage.removeItem('catScores'); updateLeaderboard(); }
 
-        // 🌸 Çiçekler
         setInterval(() => {
             const f = document.createElement('div'); f.className = 'flower';
             f.innerHTML = '🌸'; f.style.left = Math.random() * 100 + "vw";
             f.style.animationDuration = Math.random() * 3 + 3 + "s";
-            document.body.appendChild(f);
-            setTimeout(() => f.remove(), 5000);
-        }, 800);
+            document.body.appendChild(f); setTimeout(() => f.remove(), 5000);
+        }, 1000);
     </script>
 </body>
 </html>
