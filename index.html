@@ -11,10 +11,10 @@
         body { background: #fff5f7; color: var(--text); overflow-x: hidden; min-height: 100vh; }
 
         /* 🌸 Çiçek Yağmuru */
-        .flower { position: fixed; top: -50px; font-size: 24px; z-index: 1; animation: fall linear forwards; }
+        .flower { position: fixed; top: -50px; font-size: 24px; z-index: 1; animation: fall linear forwards; pointer-events: none; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        /* 🐱 Zıplayan Kedi */
+        /* 🐱 Kedi */
         .cat-box { position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 1000; text-align: center; }
         .cat-visual { font-size: 70px; animation: bounce 2s infinite; display: block; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
@@ -34,13 +34,16 @@
         h1 { color: var(--dark-pink); margin-bottom: 20px; }
 
         /* 🎮 Oyun Alanı */
-        #game-area { width: 100%; height: 300px; background: #fff; border: 2px dashed var(--pink); border-radius: 20px; position: relative; overflow: hidden; cursor: crosshair; }
-        .target { position: absolute; font-size: 40px; transition: 0.2s; user-select: none; }
+        #game-area { width: 100%; height: 350px; background: #fff; border: 2px dashed var(--pink); border-radius: 20px; position: relative; overflow: hidden; cursor: crosshair; }
+        .target { position: absolute; font-size: 45px; cursor: pointer; user-select: none; z-index: 10; transition: transform 0.1s; }
         
-        /* 📝 Anket */
-        .survey-box { text-align: left; background: var(--soft-pink); padding: 20px; border-radius: 20px; margin-top: 20px; }
-        .survey-box label { display: block; margin: 10px 0 5px; font-weight: bold; }
-        .btn { background: var(--dark-pink); color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin-top: 15px; }
+        /* 🏆 Skor Tablosu */
+        .score-table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        .score-table th, .score-table td { padding: 10px; border-bottom: 1px solid var(--soft-pink); }
+
+        .btn { background: var(--dark-pink); color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin-top: 15px; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: var(--pink); }
+        input, textarea, select { padding: 10px; border-radius: 10px; border: 1px solid var(--pink); margin: 10px 0; outline: none; width: 100%; }
     </style>
 </head>
 <body>
@@ -49,81 +52,98 @@
         <div class="logo">Ayşe Gül Ilhan</div>
         <div class="nav-links">
             <a onclick="showPage('ana-sayfa')">Ana Sayfa</a>
-            <a onclick="showPage('oyun')">Pati Yakala</a>
-            <a onclick="showPage('yetenekler')">Yetenekler</a>
+            <a onclick="showPage('hakkimda')">Hakkımda</a>
+            <a onclick="showPage('oyun')">Pati Avı</a>
             <a onclick="showPage('anket')">Anket</a>
+            <a onclick="showPage('skorlar')">Liderler</a>
         </div>
     </nav>
 
     <!-- Ana Sayfa -->
     <div id="ana-sayfa" class="page active-page">
         <h1 id="typing"></h1>
-        <p>Batman'ın Gelecek Vaat Eden Yazılımcısı 🐾</p>
-        <p style="margin-top:15px;">Teknoloji ve kedilerin dünyasına hoş geldin. Menüden oyun oynayabilir veya anketimize katılabilirsin!</p>
+        <p>Batman'dan Yazılım Dünyasına Pati İzleri 🐾</p>
+        <p style="margin-top:15px;">Teknoloji, oyun ve kedilerin buluştuğu dijital bahçeme hoş geldin!</p>
     </div>
 
-    <!-- 🎮 Oyun Sayfası -->
+    <!-- 👤 Hakkımda -->
+    <div id="hakkimda" class="page">
+        <h1>Ben Kimim? 🌸</h1>
+        <p>Batman'da yaşayan bir yazılımcı adayıyım. Kodların karmaşasını çiçeklerin ve kedilerin huzuruyla dengelemeyi seviyorum.</p>
+        <div style="margin-top: 20px; text-align: left; background: var(--soft-pink); padding: 20px; border-radius: 20px;">
+            <p><strong>💻 Odak Alanım:</strong> Modern web arayüzleri ve Python projeleri.</p>
+            <p><strong>🐾 Kediler:</strong> Onlar benim en sadık "hata ayıklayıcı" (debugger) dostlarım!</p>
+            <p><strong>📍 Konum:</strong> Batman, Türkiye</p>
+        </div>
+    </div>
+
+    <!-- 🎮 Zorlu Oyun Sayfası -->
     <div id="oyun" class="page">
-        <h1>Pati Yakalama Oyunu 🐾</h1>
-        <p>Ekranda beliren patilere tıkla! Skorun: <span id="score">0</span></p>
-        <div id="game-area" onclick="missedClick()"></div>
-        <button class="btn" onclick="startGame()">Oyunu Başlat</button>
-    </div>
-
-    <!-- Yetenekler -->
-    <div id="yetenekler" class="page">
-        <h1>📊 Teknik Yetenekler</h1>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="background: var(--soft-pink); padding: 15px; border-radius: 15px;">🌸 Web Tasarımı (HTML/CSS/JS)</div>
-            <div style="background: var(--soft-pink); padding: 15px; border-radius: 15px;">🐍 Python & Algoritmalar</div>
-            <div style="background: var(--soft-pink); padding: 15px; border-radius: 15px;">🌱 Veri Yapıları</div>
+        <h1>Pati Avı: Dikkatli Ol! 🐾</h1>
+        <div id="setup-area">
+            <p>Skorunu kaydetmek için ismini yaz:</p>
+            <input type="text" id="player-name" placeholder="Adın nedir?">
+            <button class="btn" onclick="checkNameAndStart()">Oyunu Başlat</button>
+        </div>
+        <div id="play-area" style="display: none;">
+            <p>Boş beyaz alana basarsan oyun biter! Skor: <b id="score">0</b></p>
+            <div id="game-area" onclick="gameOver()"></div>
         </div>
     </div>
 
-    <!-- 📝 Anket Sayfası -->
+    <!-- 🏆 Skor Tablosu -->
+    <div id="skorlar" class="page">
+        <h1>🏆 En İyi 5 Avcı</h1>
+        <table class="score-table">
+            <thead>
+                <tr><th>Sıra</th><th>Oyuncu</th><th>Skor</th></tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+        </table>
+        <button class="btn" onclick="clearScores()">Tabloyu Temizle</button>
+    </div>
+
+    <!-- ✉️ Anket (Artık Mailine Bağlı!) -->
     <div id="anket" class="page">
-        <h1>Memnuniyet Anketi 📝</h1>
-        <div class="survey-box">
-            <label>Siteyi nasıl buldunuz?</label>
-            <select id="rating" style="width:100%; padding:8px; border-radius:5px; border:1px solid var(--pink);">
-                <option>Çok Şirin! 🌸</option>
-                <option>Harika Bir İş 💻</option>
-                <option>Geliştirilmeli 🐾</option>
-            </select>
-            <label>En sevdiğiniz özellik?</label>
-            <input type="text" id="fav" placeholder="Örn: Zıplayan kedi..." style="width:100%; padding:8px; border-radius:5px; border:1px solid var(--pink);">
-            <button class="btn" onclick="submitSurvey()">Gönder</button>
+        <h1>Geri Bildirim 📬</h1>
+        <p>Yazdıkların doğrudan mail kutuma ulaşacak.</p>
+        <div style="text-align: left; background: var(--soft-pink); padding: 20px; border-radius: 20px; margin-top: 20px;">
+            <form action="https://formspree.io/f/xgodyvwo" method="POST">
+                <label>Siteyi nasıl buldunuz?</label>
+                <select name="rating">
+                    <option value="Muhteşem">Muhteşem! 🌸</option>
+                    <option value="Çok Eğlenceli">Çok Eğlenceli 🐾</option>
+                    <option value="Daha Fazla Kedi!">Daha Fazla Kedi Lazım! 😼</option>
+                </select>
+                <label>Mesajınız:</label>
+                <textarea name="message" rows="4" placeholder="Fikirlerini benimle paylaş..."></textarea>
+                <button type="submit" class="btn">Mesajı Gönder</button>
+            </form>
         </div>
     </div>
 
-    <!-- 🐱 Gelişmiş Şirin Kedi -->
+    <!-- 🐱 Kedi -->
     <div class="cat-box" onclick="kediKonustur()">
         <div id="balon" class="bubble">Miyav! Hoş geldin!</div>
         <span class="cat-visual">🐈</span>
-        <p style="font-weight: bold; color: var(--dark-pink);">Pati At!</p>
     </div>
 
     <script>
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
             document.getElementById(id).classList.add('active-page');
-            if(id === 'oyun') startGame();
+            if (id === 'skorlar') updateLeaderboard();
         }
 
-        // Yazı Efekti
         const text = "Ayşe Gül Ilhan"; let idx = 0;
         function type() { if(idx < text.length) { document.getElementById("typing").innerHTML += text.charAt(idx); idx++; setTimeout(type, 150); } }
         window.onload = type;
 
-        // Şirin Kedi Konuşmaları
         const kediSozleri = [
-            "Miyav! Batman'ın havası bugün çok güzel değil mi? 🌸",
-            "Ayşe Gül kod yazarken ben de ona pati yardımı yapıyorum! 💻",
-            "Uykum geldi ama seninle oyun oynamak daha eğlenceli! 🐾",
-            "Acıktım mı ne? Bir balık olsa da yesek... 🐟",
-            "Vay canına! Bugün çok şık görünüyorsun tüysüz dostum! ✨",
-            "Miyav! Sitemizi beğendin mi? Ankete katılmayı unutma! 📝",
-            "Ben Batman'ın en akıllı kedisiyim, Ayşe Gül öyle diyor! 😼"
+            "Miyav! Batman fıstığı kadar tatlı bir gün olsun! 🌸",
+            "Anketten gelen mesajları okumak için sabırsızlanıyoruz! 📬",
+            "Pati Avı'nda boşluğa basma, kuyruğumu titretme! 😼",
+            "Ayşe Gül'ün sitesi Batman'ın en havalı sitesi! 🐾"
         ];
         function kediKonustur() {
             const b = document.getElementById("balon");
@@ -132,38 +152,65 @@
             setTimeout(() => b.style.display = "none", 3500);
         }
 
-        // 🎮 Mini Oyun Mantığı
-        let score = 0;
+        // 🎮 OYUN
+        let score = 0; let currentPlayer = ""; let gameActive = false;
+        function checkNameAndStart() {
+            currentPlayer = document.getElementById("player-name").value.trim();
+            if (!currentPlayer) { alert("Lütfen ismini yaz! 🐾"); return; }
+            document.getElementById("setup-area").style.display = "none";
+            document.getElementById("play-area").style.display = "block";
+            startGame();
+        }
         function startGame() {
-            const area = document.getElementById("game-area");
-            area.innerHTML = ""; score = 0; document.getElementById("score").innerText = score;
+            score = 0; gameActive = true;
+            document.getElementById("score").innerText = score;
             spawnTarget();
         }
         function spawnTarget() {
-            const area = document.getElementById("game-area");
-            const target = document.createElement("div");
-            target.className = "target"; target.innerHTML = "🐾";
-            target.style.left = Math.random() * 80 + "%";
-            target.style.top = Math.random() * 80 + "%";
+            if (!gameActive) return;
+            const area = document.getElementById("game-area"); area.innerHTML = "";
+            const target = document.createElement("div"); target.className = "target"; target.innerHTML = "🐾";
+            target.style.left = Math.random() * 85 + "%";
+            target.style.top = Math.random() * 85 + "%";
             target.onclick = (e) => {
                 e.stopPropagation(); score++;
                 document.getElementById("score").innerText = score;
-                area.removeChild(target);
-                spawnTarget();
+                target.remove(); spawnTarget();
             };
             area.appendChild(target);
         }
-        function submitSurvey() { alert("Teşekkürler! Geri bildirimin Ayşe Gül'e ulaştı. 🌸"); }
+        function gameOver() {
+            if (!gameActive) return;
+            gameActive = false; alert("Yandın! Skorun: " + score);
+            saveScore(currentPlayer, score);
+            document.getElementById("play-area").style.display = "none";
+            document.getElementById("setup-area").style.display = "block";
+            showPage('skorlar');
+        }
+
+        // 🏆 SKORLAR
+        function saveScore(n, s) {
+            let scs = JSON.parse(localStorage.getItem('catScores') || '[]');
+            scs.push({ name: n, score: s });
+            scs.sort((a, b) => b.score - a.score);
+            localStorage.setItem('catScores', JSON.stringify(scs.slice(0, 5)));
+        }
+        function updateLeaderboard() {
+            const scores = JSON.parse(localStorage.getItem('catScores') || '[]');
+            document.getElementById("leaderboard-body").innerHTML = scores.map((s, i) => 
+                `<tr><td>${i+1}</td><td>${s.name}</td><td>${s.score}</td></tr>`
+            ).join('') || "<tr><td colspan='3'>Henüz skor yok!</td></tr>";
+        }
+        function clearScores() { localStorage.removeItem('catScores'); updateLeaderboard(); }
 
         // 🌸 Çiçekler
         setInterval(() => {
             const f = document.createElement('div'); f.className = 'flower';
-            f.innerHTML = ['🌸', '✨', '🐾'][Math.floor(Math.random()*3)];
-            f.style.left = Math.random() * 100 + "vw";
+            f.innerHTML = '🌸'; f.style.left = Math.random() * 100 + "vw";
             f.style.animationDuration = Math.random() * 3 + 3 + "s";
             document.body.appendChild(f);
             setTimeout(() => f.remove(), 5000);
-        }, 700);
+        }, 800);
     </script>
 </body>
 </html>
